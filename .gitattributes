@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.py linguist-detectable=true
+*.py linguist-language=Python
+*.md linguist-documentation=true
+docs/** linguist-documentation=true
+examples/** linguist-documentation=true
