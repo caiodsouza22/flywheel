@@ -21,6 +21,9 @@ classifiers = [
 ]
 dependencies = []
 
+[project.scripts]
+allot = "allot.cli:main"
+
 [project.optional-dependencies]
 dev = [
   "pytest==8.3.5",
