@@ -1,6 +1,16 @@
 * text=auto eol=lf
+
+# Keep GitHub Linguist language detection centered on Python.
 *.py linguist-detectable=true
 *.py linguist-language=Python
+
+# Documentation and samples should not compete for the primary language.
 *.md linguist-documentation=true
 docs/** linguist-documentation=true
 examples/** linguist-documentation=true
+CHANGELOG.md linguist-documentation=true
+ENVIRONMENT.md linguist-documentation=true
+
+# Generated and packaging noise
+*.egg-info/** linguist-generated=true
+**/__pycache__/** linguist-generated=true
