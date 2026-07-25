@@ -1,0 +1,10 @@
+{
+  "queues": [
+    {"name": "default", "max_depth": 10000, "visibility_timeout_seconds": 30},
+    {"name": "bulk", "max_depth": 50000, "visibility_timeout_seconds": 60}
+  ],
+  "workers": {
+    "heartbeat_seconds": 5,
+    "lease_seconds": 30
+  }
+}
