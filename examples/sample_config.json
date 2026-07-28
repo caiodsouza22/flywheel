@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "tenants": [
+    {"id": "acme", "weight": 2.0, "labels": {"tier": "gold"}},
+    {"id": "beta", "weight": 1.0}
+  ],
+  "resources": [
+    {"name": "api_calls", "unit": "call", "capacity": 1000},
+    {"name": "seats", "unit": "seat", "capacity": 50}
+  ],
+  "quotas": [
+    {"tenant_id": "acme", "resource": "api_calls", "limit": 200},
+    {"tenant_id": "beta", "resource": "api_calls", "limit": 100}
+  ],
+  "budgets": [
+    {
+      "tenant_id": "acme",
+      "resource": "api_calls",
+      "allowance": 50,
+      "window_seconds": 60
+    }
+  ]
+}
