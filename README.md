@@ -20,14 +20,47 @@ pip install -e ".[dev]"
 pytest
 ```
 
+## Quick start
+
+```python
+from allot import (
+    AllocationEngine,
+    AllocationRequest,
+    InMemoryStore,
+    Quota,
+    Resource,
+    Tenant,
+)
+
+store = InMemoryStore()
+store.seed(
+    tenants=[Tenant(id="acme")],
+    resources=[Resource(name="api_calls", capacity=1000)],
+    quotas=[Quota(tenant_id="acme", resource="api_calls", limit=100)],
+)
+decision = AllocationEngine(store).allocate(
+    AllocationRequest(tenant_id="acme", resource="api_calls", amount=5)
+)
+print(decision.kind, decision.granted)
+```
+
+## CLI
+
+```bash
+allot show-config examples/sample_config.json
+allot allocate examples/sample_config.json --tenant acme --resource api_calls --amount 5
+```
+
 ## Design sketch
 
 - **Quota** — hard or soft ceiling on a named resource for a tenant
 - **Budget** — spendable allowance over a window (tokens, dollars, seats)
 - **Window** — fixed, sliding, or calendar-aligned evaluation periods
-- **Policy** — how contention is resolved (strict, burst, weighted fair)
-- **Store** — persistence of counters and leases (memory first; others later)
+- **Policy** — strict, burst, weighted fair, overdraft, composites
+- **Store** — in-memory registry plus usage ledger; read-only adapter available
 - **Engine** — evaluate a request and return grant / deny / partial
+- **Leases / reservations** — fencing tokens and temporary holds
+- **Facade** — hooks, denylist/allowlist, idempotency keys
 
 ## License
 
