@@ -26,7 +26,7 @@ allot = "allot.cli:main"
 
 [project.optional-dependencies]
 dev = [
-  "pytest==8.3.5",
+  "pytest==9.0.3",
   "pytest-cov==6.0.0",
 ]
 
